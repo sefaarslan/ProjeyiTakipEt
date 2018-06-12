@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Projeyi Takip Et</title>
+</h:head>
+<h:body>
+<center>
+	<h:form id="loginForm">
+		<h3>Login</h3>
+		<p:panelGrid columns="2">
+			<f:facet name="header">
+				<p:graphicImage height="200" width="200" url="icon/login.png"/>
+			</f:facet>
+
+			<h:outputText value="İsim:" />
+			<p:inputText value="#{loginBean.userEntity.userName}" />
+
+			<h:outputText value="Sifre:" />
+			<p:inputText value="#{loginBean.userEntity.password}" />
+
+			<h:outputText value="" />
+			<p:commandButton value="Giriş" action="#{loginBean.login}" />
+
+		</p:panelGrid>
+	</h:form>
+</center>
+</h:body>
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Insert title here</title>
+</h:head>
+
+
+
+<body>
+
+	<p:panelGrid columns="2">
+		<ui:include src="menu.xhtml"/>
+		
+		<p:panelGrid id="solUst" columns="1">
+			<h:form rendered="#{!projeBean.excelControl}">
+			<p:dataTable var="proje" value="#{projeBean.projeList}" filteredValue="#{projeBean.filteredProjeList}">
+			    <p:column filterBy="#{proje.id}" headerText="Id" filterMatchMode="contains">
+			        <h:outputText value="#{proje.id}" />
+			    </p:column>
+			 
+			    <p:column filterBy="#{proje.projeAdi}}" headerText="Proje Adı"  filterMatchMode="contains">
+			        <h:outputText value="#{proje.projeAdi}" />
+			    </p:column>
+			 
+			    <p:column headerText="Proje Aciklamasi">
+			        <h:outputText value="#{proje.projeAciklamasi}" />
+			    </p:column>
+			</p:dataTable>
+			</h:form>
+			
+		<p:commandButton update="solUst" action="#{projeBean.degistirciFnk}" value="Excel Al"></p:commandButton>
+		
+		
+		<h:form id="frmExcel" rendered="#{projeBean.excelControl}">
+    	<p:dataTable id="tbl" var="proje" value="#{projeBean.projeList}"
+		                 paginator="true" rows="10">
+			    <p:column headerText="Proje Adı">
+			        <h:outputText value="#{proje.projeAdi}" />
+			    </p:column>
+			 
+			    <p:column headerText="Proje Aciklamasi">
+			        <h:outputText value="#{proje.projeAciklamasi}" />
+			    </p:column>
+	    </p:dataTable>
+ 
+	    <h:commandLink id="excel">
+	        <p:graphicImage url="icon/excel.ico" width="30" height="30"/>
+	        <p:dataExporter type="xls" target="tbl" fileName="cars" />
+	    </h:commandLink>
+ 
+	</h:form>
+		
+		
+		
+		</p:panelGrid>
+		
+		
+	</p:panelGrid>
+	
+	
+
+</body>
+</html>

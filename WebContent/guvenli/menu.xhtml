@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:form>
+		<p:growl autoUpdate="true" />
+
+		<p:panelMenu style="width:300px">
+			<p:submenu label="Proje">
+				<p:menuitem value="Listele" url="listele.xhtml" icon="ui-icon-disk" />
+				<p:menuitem value="Ekle - Sil" url="projeekle.xhtml" icon="ui-icon-arrowrefresh-1-w" />
+			</p:submenu>
+
+			<p:separator />
+
+			<p:submenu label="Kullanıci İşlemleri" rendered="#{loginBean.mevcutUser.role == 1}">
+				<p:menuitem value="Kullanıcilar" url="kullanci.xhtml"
+					icon="ui-icon-disk" />
+				<p:menuitem value="Kullanıci Ekle" url="kullanciekle.xhtml"
+					icon="ui-icon-disk" />
+				<p:menuitem value="Yetki" icon="ui-icon-arrowrefresh-1-w" />
+			</p:submenu>
+
+		</p:panelMenu>
+		
+		<p:commandButton value="Çıkış" action="#{loginBean.loginOut}"></p:commandButton>
+		
+	</h:form>
+
+</ui:composition>
+

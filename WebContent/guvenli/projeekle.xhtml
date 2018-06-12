@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Insert title here</title>
+</h:head>
+
+<body>
+
+	<p:panelGrid columns="2">
+
+		<ui:include src="menu.xhtml"/>
+
+		<h:form>
+			<p:panelGrid columns="2">
+				<p:outputLabel for="projeInputText" value="Proje Adi"/>
+				<p:panelGrid>
+					<p:inputText id="projeInputText" requiredMessage="Bu alan boş geçilemez" value ="#{projeBean.projeAdd.projeAdi}" required="true" >
+	                	<f:validateLength minimum="2"  />
+					</p:inputText>
+		        	<p:messages for="projeInputText" autoUpdate="true"/>
+				</p:panelGrid>
+				
+			
+				<p:outputLabel value="Proje Açıklaması"/>
+				
+				<p:panelGrid>
+					<p:inputTextarea value="#{projeBean.projeAdd.projeAciklamasi}" rows="5" cols="30" counter="display" maxlength="50" counterTemplate="Kalan : {0}  kaldı." autoResize="false" />
+					<h:outputText id="display" />
+				</p:panelGrid>
+				
+				<p:outputLabel value="Problem Bulguları"/>
+				<p:inputText value ="#{projeBean.projeAdd.problemBulgulari}" />
+			
+		        <p:outputLabel for="popup1" value="Baslangic Tarihi" />
+				<p:calendar id="popup1" value="#{projeBean.projeAdd.baslangicTarihi}" />
+			
+		        <p:outputLabel for="popup2" value="Hedef Tarihi" />
+				<p:calendar id="popup2" value="#{projeBean.projeAdd.hedefTarihi}" />
+			
+			
+				<p:outputLabel value="Durum"/>
+		        <p:selectOneMenu id="durum" converter="durumConverter" value="#{projeBean.selectedDurum}">
+			            <f:selectItems var="dur" itemValue="#{dur}" itemLabel="#{dur.durum}" value="#{projeBean.durumList}" />
+        		</p:selectOneMenu>
+			
+				<p:outputLabel value=""/>
+				<p:commandButton value="Kaydet" action="#{projeBean.addProjeFonk}" />
+			
+			
+			</p:panelGrid>
+		</h:form>
+
+	</p:panelGrid>
+
+</body>
+</html>
